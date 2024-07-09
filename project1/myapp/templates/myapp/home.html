@@ -383,12 +383,14 @@
 
           <ul class="blog-list">
 
+            {% for i in data %}
             <li>
               <div class="blog-card">
 
                 <figure class="blog-banner">
                   <a href="#">
-                    <img src="{% static 'blog-1.jpg' %}" alt="How is technology working with new things?"
+                    {% comment %} <img src="{% static 'blog-1.jpg' %}" alt="How is technology working with new things?" {% endcomment %}
+                    <img src="{{ i.img }}" alt="How is technology working with new things?"
                       loading="lazy" class="w-100">
                   </a>
                 </figure>
@@ -400,7 +402,7 @@
                     <li class="blog-meta-item">
                       <ion-icon name="pricetag-outline"></ion-icon>
 
-                      <a href="#" class="blog-meta-link">Technology</a>
+                      <a href="#" class="blog-meta-link">{{ i.category }}</a>
                     </li>
 
                     <li class="blog-meta-item">
@@ -412,15 +414,16 @@
                   </ul>
 
                   <h3 class="h3 blog-title">
-                    <a href="#">How is technology working with new things?</a>
+                    <a href="#">{{ i.title }}</a>
                   </h3>
 
                 </div>
 
               </div>
             </li>
+            {% endfor %}
 
-            <li>
+            {% comment %} <li>
               <div class="blog-card">
 
                 <figure class="blog-banner">
@@ -492,7 +495,7 @@
                 </div>
 
               </div>
-            </li>
+            </li> {% endcomment %}
 
           </ul>
 
