@@ -6,6 +6,8 @@
     <h2>User Login Form </h2>
     {% csrf_token %}
     {{form | crispy }}
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary my-2">Submit</button>
+    <br><span>Don't have an account?  </span> <a href="{% url 'register' %}" > Sign up</a>
+    
 </form>
 {% endblock %}
