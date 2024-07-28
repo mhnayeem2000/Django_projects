@@ -27,6 +27,7 @@
                     <form class="d-flex">
                       <a href="{% url 'profile' %}" class="btn btn-outline-primary" type="submit">Profile</a>
                       <a href="{% url 'logout' %}" class="btn btn-outline-danger mx-2" type="submit">logout</a>
+                      <a href="{% url 'profile' %}" class="btn btn-outline-info mx-2 rounded-circle" type="submit">{{user}}</a>
                     </form>
                   </div>
                 </div>
