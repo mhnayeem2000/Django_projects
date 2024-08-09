@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <h1>Musicians List</h1>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Musician Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Album Rating</th>
+          <th scope="col">Intrument Type</th>
+          <th scope="col">Album Name</th>
+          <th scope="col">Release Date</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% if user.is_authenticated %}
+        {% for ms in musicians %}
+            {% for alb in album %}
+                {% if alb.musicians == ms %}
+                    <tr>
+                        <th scope="row">{{ ms.id }}</th>
+                        <td>{{ ms.first_name }} {{ ms.last_name }}</td>
+                        <td>{{ ms.email }}</td>
+                        <td>{{ alb.rating }}★</td>
+                        <td>{{ ms.instrument_type }}</td>
+                        <td>{{ alb.alb_name }}</td>
+                        <td>{{ alb.date }}</td>
+                        <td>
+                            <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                <button type="button" class="btn btn-warning">Edit</button>
+                                <button type="button" class="btn btn-danger">Delete</button>
+                            </div>
+                        </td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+    {% else %}
+        {% for ms in musicians %}
+            {% for alb in album %}
+                {% if alb.musicians == ms %}
+                    <tr>
+                        <th scope="row">{{ ms.id }}</th>
+                        <td>{{ ms.first_name }} {{ ms.last_name }}</td>
+                        <td>{{ ms.email }}</td>
+                        <td>{{ alb.rating }}★</td>
+                        <td>{{ ms.instrument_type }}</td>
+                        <td>{{ alb.alb_name }}</td>
+                        <td>{{ alb.date }}</td>
+
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+                        <td colspan="3">
+                          <a href="{% url 'login' %}" class="btn btn-outline-success " type="submit">Login Please</a>
+                        </td>
+                    </tr>
+    {% endif %}
+    
+    
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}
