@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from .forms import registrationForm , update_user
+from .forms import registrationForm , update_user , add_musicians , add_album
 from django.contrib.auth.forms import AuthenticationForm , SetPasswordForm , PasswordChangeForm 
 from django.contrib.auth import  authenticate, login, logout , update_session_auth_hash
 from . import models
@@ -98,3 +98,29 @@ def updateuser(request):
     else:
         return redirect('login')
     
+
+def add_musician(request):
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            form = add_musicians(request.POST)
+            if form.is_valid():
+                form.save()
+                return redirect('homepage')
+        else:
+            form = add_musicians()
+        return render(request, 'add_musicians.html', {'form': form})
+    else:
+        return redirect('login')     
+
+def add_alb(request):
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            form = add_album(request.POST)
+            if form.is_valid():
+                form.save()
+                return redirect('homepage')
+        else:
+            form = add_album()
+        return render(request, 'add_album.html', {'form': form})
+    else:
+        return redirect('login')        

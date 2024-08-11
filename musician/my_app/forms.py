@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm,UserChangeForm
 from django import forms
+from my_app.models import musicians, album 
 
 class registrationForm(UserCreationForm):
     email = forms.EmailField(widget=forms.TextInput(attrs={ 'id': 'required'}))
@@ -27,3 +28,14 @@ class update_user(UserChangeForm):
             'password2': None,
         }
 
+
+class add_musicians(forms.ModelForm):
+    class Meta:
+        model = musicians
+        fields = '__all__'
+    
+
+class add_album(forms.ModelForm):
+    class Meta:
+        model = album
+        fields = '__all__'

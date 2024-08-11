@@ -11,4 +11,6 @@ urlpatterns = [
     path('profile_update/', views.updateuser, name='profile_update'),
     path('register/', views.register , name='register'),
     path('user_create_success', views.user_create_success, name='user_create_success'),
+    path('add_musicians', views.add_musician, name='add_musicians'),
+    path('add_album', views.add_alb, name='add_album'),
 ]
