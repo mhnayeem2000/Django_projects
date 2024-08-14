@@ -5,14 +5,17 @@ from . import models
 from posts.forms import post_form
 
 def add_post(request):
-    if request.method == 'POST':
-        form = post_form(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('add_post')
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            form = post_form(request.POST)
+            if form.is_valid():
+                form.save()
+                return redirect('add_post')
+        else:
+            form = post_form()    
+        return render(request, 'posts.html', {'form': form})
     else:
-        form = post_form()    
-    return render(request, 'posts.html', {'form': form})
+        return redirect('login')
 
 
         
