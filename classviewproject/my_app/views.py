@@ -2,11 +2,14 @@ from django.shortcuts import render, redirect
 from my_app.forms import registrations
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate , login , logout
-
+from posts.models import Post
+from author.models import author
 # Create your views here.
 
 def home(request):
-    return render(request,'index.html')
+    data = Post.objects.all()
+    posts_count = data.count()  
+    return render(request,'index.html', {'data': data , 'posts_count': posts_count})
 
 def register(request):
     if request.method == 'POST':
