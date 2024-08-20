@@ -1,9 +1,8 @@
 from django.shortcuts import render, redirect
-from my_app.forms import registrations
-from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import authenticate , login , logout
+from my_app.forms import registrations, updateuser
+from django.contrib.auth.forms import AuthenticationForm , PasswordChangeForm
+from django.contrib.auth import authenticate , login , logout , update_session_auth_hash
 from posts.models import Post
-from author.models import author
 # Create your views here.
 
 def home(request):
@@ -41,3 +40,31 @@ def user_logout(request):
     return redirect('login')
 
     
+ 
+def updateProfile(request):
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            form = updateuser(request.POST,instance = request.user)
+            if form.is_valid():
+                form.save()
+                return redirect ('login')
+        else:
+            form = updateuser(instance = request.user)    
+        return render(request,'changeuser.html' ,{'form':form}) 
+    else:
+        return redirect('login')   
+    
+
+def changepass(request):
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            form = PasswordChangeForm(request.user, data = request.POST)
+            if form.is_valid():
+                form.save()
+                update_session_auth_hash(request, form.user)
+                return redirect ('homepage')
+        else:
+            form = PasswordChangeForm(user = request.user)    
+        return render(request,'changepass.html' ,{'form':form}) 
+    else:
+        return redirect('login') 

@@ -7,6 +7,5 @@ urlpatterns = [
     path('', include('my_app.urls')),
     path('', include('author.urls')),
     path('', include('categories.urls')),
-    path('', include('profiles.urls')),
     path('', include('posts.urls')),
 ]

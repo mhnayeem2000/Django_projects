@@ -1,9 +1,9 @@
 from django import forms
-from author.models import author
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
 
-class add_author(forms.ModelForm):
+
+class registration_form(UserCreationForm):
     class Meta:
-        model = author
-        fields = '__all__'
-
-
+        model = User
+        fields = ["username", "first_name", "last_name" "email"]
