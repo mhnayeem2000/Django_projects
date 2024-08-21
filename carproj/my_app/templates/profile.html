@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <h1>Welcome {{ user }}</h1>
+        <table class="table border mt-3">
+            <thead>
+              <tr>
+                <th scope="col">User Name</th>
+                <td scope="col">{{ user }}</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">First Name</th>
+                <td>{{ user.first_name }}</td>
+               
+              </tr>
+              <tr>
+                <th scope="row">Last Name</th>
+                <td>{{ user.last_name }}</td>
+                
+              </tr>
+              <tr>
+                <th scope="row">Your Email</th>
+                <td >{{ user.email }}</td>
+              </tr>
+              <tr>
+                <th scope="row">Your Password (Hash Form)</th>
+                <td >{{ user.password }}</td>
+              </tr>
+            </tbody>
+          </table>
+        
+    </div>
+</div>
+
+{% endblock %}
